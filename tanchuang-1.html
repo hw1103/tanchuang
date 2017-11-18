@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>弹窗效果</title>
+    <script src= "http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <input id='id-input-add'name="name" value="">
+    <br>
+    <button id='id-button-add' type="button" name="butto">登陆</button>
+    <script>
+      let log = console.log.bind(console)
+      let GuaAlert1 = function(title, messgae) {
+          let css = `
+              <style>
+              .tan{
+                  position: fixed;
+                  top: 0px;
+                  left:0px;
+                  width: 100%;
+                  height: 100%;
+                  background: black;
+                  opacity: 0.5;
+
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+              .tan-title {
+                  color: red;
+                  text-align: center;
+              }
+              .tan-message {
+                  color: black;
+                  height: 150px;
+                  background: yellow;
+                  width: 300px;
+              }
+              .tan-btns {
+                  text-align: center;
+              }
+              </style>`
+          $('head').append(css)
+
+          let tan = `
+          <div class="tan">
+              <div class="龟龟">
+                  <div class="tan-title">
+                      ${title}
+                  </div>
+                  <div class="tan-message">
+                      ${messgae}
+                  </div>
+                  <div class='tan-btns'>
+                      <button class="tan-yes" type="button" name="button">ok</button>
+                  </div>
+              </div>
+          </div>`
+          $('body').append(tan)
+          $('.tan-yes').on('click', function() {
+              $('.tan').remove()
+          })
+      }
+      GuaAlert1('新用户', '注册')
+      </script>
+
+
+
+
+      <!-- //   $('.tan').find('.龟龟').append(
+      //       `    <input type="text" name="" value="">`
+      //   ) -->

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>弹窗效果</title>
+    <script src= "http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <input id='id-input-add'name="name" value="">
+    <br>
+    <button id='id-button-add' type="button" name="butto">登陆</button>
+    <script>
+      let log = console.log.bind(console)
+      let GuaPrompt = function(title, callback) {
+          let css = `
+              <style>
+              .tan{
+                  position: fixed;
+                  top: 0px;
+                  left:0px;
+                  width: 100%;
+                  height: 100%;
+                  background: black;
+                  opacity: 0.5;
+
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+              .tan-title {
+                  color: red;
+                  text-align: center;
+              }
+              .tan-btns {
+                  text-align: center;
+              }
+              </style>`
+          $('head').append(css)
+
+          let tan = `
+          <div class="tan">
+              <div class="龟龟">
+                  <div class="tan-title">
+                      ${title}
+                  </div>
+                  <div class='tan-btns'>
+                      <input  id='input-add'  name="name"   value="">
+                      <button class="tan-yes" type="button" name="button">ok</button>
+                      <button class="tan-no"  type="button" name="button">cancel</button>
+                  </div>
+              </div>
+          </div>`
+          $('body').append(tan)
+
+          $('.tan-yes').on('click', function() {
+              let v = $('#input-add').val()
+              callback(true, v)
+              $('.tan').remove()
+          })
+          $('.tan-no').on('click', function() {
+              callback(false)
+              $('.tan').remove()
+          })
+      }
+      let callback = function(bool, val){
+          log(bool, val)
+      }
+      GuaPrompt('新用户', callback)
+      </script>
